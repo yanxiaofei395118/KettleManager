@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gdp.km.klog.service.impl.dao.RLogMapper" >
+  <resultMap id="BaseResultMap" type="com.gdp.km.klog.bean.RLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="id_log" property="idLog" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="id_loglevel" property="idLoglevel" jdbcType="INTEGER" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="stop_time" property="stopTime" jdbcType="TIMESTAMP" />
+    <result column="log_content" property="logContent" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, id_log, name, id_loglevel, start_date, stop_time, log_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from r_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from r_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gdp.km.klog.bean.RLog" >
+    insert into r_log (id, id_log, name, 
+      id_loglevel, start_date, stop_time, 
+      log_content)
+    values (#{id,jdbcType=INTEGER}, #{idLog,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{idLoglevel,jdbcType=INTEGER}, #{startDate,jdbcType=TIMESTAMP}, #{stopTime,jdbcType=TIMESTAMP}, 
+      #{logContent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gdp.km.klog.bean.RLog" >
+    insert into r_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="idLog != null" >
+        id_log,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="idLoglevel != null" >
+        id_loglevel,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="stopTime != null" >
+        stop_time,
+      </if>
+      <if test="logContent != null" >
+        log_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="idLog != null" >
+        #{idLog,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idLoglevel != null" >
+        #{idLoglevel,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopTime != null" >
+        #{stopTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logContent != null" >
+        #{logContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gdp.km.klog.bean.RLog" >
+    update r_log
+    <set >
+      <if test="idLog != null" >
+        id_log = #{idLog,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idLoglevel != null" >
+        id_loglevel = #{idLoglevel,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopTime != null" >
+        stop_time = #{stopTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logContent != null" >
+        log_content = #{logContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gdp.km.klog.bean.RLog" >
+    update r_log
+    set id_log = #{idLog,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      id_loglevel = #{idLoglevel,jdbcType=INTEGER},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      stop_time = #{stopTime,jdbcType=TIMESTAMP},
+      log_content = #{logContent,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

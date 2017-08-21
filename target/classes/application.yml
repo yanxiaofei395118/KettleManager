@@ -1,0 +1,31 @@
+server:
+  #设置端口号
+  port: 8081
+  contextPath: /
+
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapperLocations: classpath*:com/gdp/km/**/mapper/*Mapper.xml
+logging:
+  level:
+    org.springframework:
+      security: DEBUG     
+      
+kettle:
+  datasource:
+    ip: 10.4.118.183
+    workspace: kettle
+    prot: 3306
+    username: root
+    password: root   
+
+spring:
+  http:
+    encoding:
+      charset: utf8
+  datasource:
+    url: jdbc:mysql://10.4.118.183:3306/kettle?characterEncoding=utf8&useSSL=true
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver 
